@@ -19,37 +19,25 @@ class Node:
         #Find line
         lines = file.readlines()
 
-        RelLineNumber = 0
+
         for line in lines:
 
             spl = line.split(',')
 
             if spl[0] == node.Name:
+
                 found = True
 
-            else:
-                RelLineNumber+=1
         file.close()
         #If found, append
-        if found == True:
-            file = open('nodes.csv','r+')
-            print(RelLineNumber)
-            arrLines = []
-
-            for line in file.readlines():
-
-                arrLines.append(line)
-            print(len(arrLines))
-            arrLines[RelLineNumber] = arrLines[RelLineNumber] + node.Name
-            for line in arrLines:
-                file.write(line)
-            file.close()
+        if found==True:
+            print(found)
 
 
         #If not found, new line
         if found == False:
-            file = open('nodes.csv','r+')
-            print('[DEBUG] New Node Line')
+            file = open('nodes.csv','a+')
+            print('[DEBUG] NOT FOUND')
             connections = []
             connections.append(node)
             for n in node.Connections:
