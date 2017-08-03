@@ -18,20 +18,33 @@ class Node:
         found = False
         #Find line
         lines = file.readlines()
-
+        linesArr = []
+        markLine = 0
 
         for line in lines:
-
+            linesArr.append(line)
             spl = line.split(',')
 
             if spl[0] == node.Name:
-
+                markLine = len(linesArr)
                 found = True
 
         file.close()
         #If found, append
         if found==True:
-            print(found)
+            #print('[DEBUG] TRUE MARKLINE '+str(markLine))
+            spl = linesArr[markLine-1].split(',')
+            for n in node.Connections:
+                found = False
+                for ele in spl:
+                    if ele == n.Name:
+                        found = True
+            if found == False:
+                file = open('nodes.csv','w+')
+                linesArr[markLine-1]+=
+                for line in linesArr:
+                    file.write(line)
+                file.close()
 
 
         #If not found, new line
