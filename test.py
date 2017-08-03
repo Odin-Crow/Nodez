@@ -14,6 +14,7 @@ def main():
     connect42 = Connection('conn_4to2')
     connect15 = Connection('conn_1to5')
     connect25 = Connection('conn_2to5')
+    connect35 = Connection('conn_3to5')
 
     connect12.Connect(node1, node2)
     connect13.Connect(node1, node3)
@@ -21,15 +22,8 @@ def main():
     connect42.Connect(node4, node2)
     connect15.Connect(node1, node5)
     connect25.Connect(node2, node5)
+    connect35.Connect(node3, node5)
 
-    node1.saveToFile(node1)
-    node2.saveToFile(node2)
-    node3.saveToFile(node3)
-    node4.saveToFile(node4)
-    node5.saveToFile(node5)
-    print(connect12.Node1.Name+' is the name of Node 1\n'+connect12.Node2.Name+' is the name of Node 2\n')
-    for conn in node1.Connections:
-        print(conn.Name + ' is connected to '+ conn.Name)
 
 if __name__ == '__main__':
     main()
