@@ -6,33 +6,40 @@ class Node:
         self.Name = n
         self.Date=d
         self.Details = det
-        self.Connections=[]
+        self.Connections={}
 
-    def addConnect(self, conn):
-        self.Connections.append(conn)
+    def addConnect(self, conn, desc):
+        self.Connections[conn] = desc
+        #conn.addConnect(self, desc)
 
 
     def saveToFile(self, node):
 
         file = open('nodes.csv','a+')
-        for n in node.Connections:
-            file.write(n.Name+',')
-        file.write('\n')
+        nodes = file.readlines()
+        print('[DEBUG] NODES : '+str(nodes)+'\n')
+        #Check if Node exists in file
+        nodeIn = '#'+node.Name in nodes
+        #print('[DEBUG] Node '+node.Name+' is in file : '+str(nodeIn))
+        #If it is not
+        file.write('#'+node.Name+'\n\n')
+        if not nodeIn:
+            for n in node.Connections:
+                file.write('~'+n.Name+' : '+node.Connections[n]+'\n')
+
+
+        #If it is
+            #Run through each connection, check if connection exists
+            #If it does not
+
+
+
+            #If it does
+
+
+
         file.close()
 
 
     def __del__(self):
         self.saveToFile(self)
-class Connection:
-
-    def __init__(self, n="Connection", d="0/0/0", det={}):
-        self.Name=n
-        self.Date=d
-        self.Details=det
-
-    def Connect(self, Node1, Node2):
-        self.Node1 = Node1
-        self.Node2 = Node2
-
-        Node1.addConnect(self.Node2)
-        Node2.addConnect(self.Node1)
